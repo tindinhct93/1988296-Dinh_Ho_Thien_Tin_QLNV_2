@@ -37,10 +37,14 @@ def Doc_Danh_sach_nhan_vien():
     return Danh_sach
 
 def Ghi_nhan_vien(Nhan_vien):
-    pass
+    Duong_dan = Thu_muc_nhan_vien + "/" + Nhan_vien['Ma_so'] +".json"
+    chuojSON = json.dumps(Nhan_vien)
+    with open(Duong_dan,"r+",encoding="utf-8") as f:
+        f.write(chuojSON)
 
 def Ghi_Hinh_Nhan_vien(Nhan_vien,Hinh):
-    pass
+    Duong_dan = f"""../Media/{Nhan_vien['Ma_so']}.png"""
+    Hinh.save(Duong_dan)
 
 def Tao_chuoi_HTML_form_dang_nhap(Thong_bao, Ten_dang_nhap= "NV_1",Mat_khau="NV_1"):
     chuoi_HTML = f"""<form action="/Dang_nhap" method="post">
@@ -77,13 +81,25 @@ def Tao_chuoi_HTML_Menu_Chinh():
     return chuoi_thuc_don
 
 def Tao_chuoi_HTML_Thong_tin_Nhan_vien(Nhan_vien):
-    return ''    
+    chuoi_Hinh = f'''<img src="/Media/{Nhan_vien['Ma_so']}.png" style="width: 60px; height: 60px"/>'''
+    chuoi_Ngoai_ngu = ""
+    for ngoai_ngu in Nhan_vien['Danh_sach_Ngoai_ngu']:
+        chuoi_Ngoai_ngu += ngoai_ngu['Ten'] + " "
+    chuoi_Thong_tin =f'''<div class= "btn" style="text-align:left">
+            {Nhan_vien['Ho_ten']} {Nhan_vien['CMND']} <br/>
+             {Nhan_vien['Don_vi']['Ten']} - {Nhan_vien['Don_vi']['Chi_nhanh']['Ten']}      <br/>
+             {Nhan_vien['Dien_thoai']} <br/>
+             {Nhan_vien['Dia_chi']} <br/>
+             {chuoi_Ngoai_ngu}
+             </div>'''
+    return chuoi_Hinh + chuoi_Thong_tin    
 
 def Tao_chuoi_HTML_Thuc_don_Nhan_vien(Nhan_vien):
-    ChuoiHTML = f"""
+    ChuoiHTML = f""" <div class='row'> 
         {Tao_chuoi_HTML_cap_nhat_dien_thoai(Nhan_vien)}
         {Tao_chuoi_HTML_cap_nhat_dia_chi(Nhan_vien)}
-        {Tao_chuoi_HTML_cap_nhat_hinh}
+        {Tao_chuoi_HTML_cap_nhat_hinh(Nhan_vien)}
+        </div>
     """
     return ChuoiHTML
 
@@ -106,7 +122,7 @@ def Tao_chuoi_HTML_cap_nhat_dia_chi (Nhan_vien):
     chuoi_Dropdown = f'''<div class="dropdown-menu" style="width:200%">
             <form action="/Cap_nhat_dia_chi" method="post">
                 <input name="Th_Ma_so_nhan_vien" value={Nhan_vien['Ma_so']} type ="hidden">
-                <textarea name="Th_Dia_chi" required cols="25" rows="3" style="width:90%">{Nhan_vien['Dia_Chi']}</textarea>
+                <textarea name="Th_Dia_chi" required cols="25" rows="3" style="width:90%">{Nhan_vien['Dia_chi']}</textarea>
                 <div class="alert">
                     <button class="btn btn-danger" type="submit">Đồng ý</button>                
                 </div>

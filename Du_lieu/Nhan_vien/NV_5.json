@@ -4,12 +4,12 @@
 	"CMND": "070227446",
 	"Gioi_tinh": "Nữ",
 	"Dien_thoai": "0955282489",
-	"Dia_chi": "Trần văn Minh  Tiền giang",
+	"Dia_chi": "Trần chiến M Quận 8-Tiền giang",
 	"Mail": "ntnliên@cschncom",
 	"Ten_Dang_nhap": "NV_5",
 	"Mat_khau": "NV_5",
 	"Muc_luong": 6650000,
-	"Ngay_sinh": "4-1-1982",
+	"Ngay_sinh": "1982-01-03T17:00:00Z",
 	"Don_vi": {
 		"Ma_so": "DV_6",
 		"Ten": "Đa năng B",
@@ -35,6 +35,5 @@
 			"Ten": "Ý",
 			"Ma_so": "Y"
 		}
-	],
-	"Ma_so_Bao_mat": "VHLhuqduIGNoaeG6v24gTSBRdeG6rW4gOC1UaeG7gW4gZ2lhbmc="
+	]
 }

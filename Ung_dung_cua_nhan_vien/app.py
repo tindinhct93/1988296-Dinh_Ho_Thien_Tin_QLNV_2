@@ -30,3 +30,26 @@ def XL_Dang_nhap():
     chuoiHTML = Tao_page_HTML_Giao_dien_Khoi_dong(True)
     return chuoiHTML
 
+@app.route("/Cap_nhat_dien_thoai",methods=["POST"])
+def XL_cap_nhat_dien_thoai():
+    nhan_vien = session['Nguoi_dung']
+    nhan_vien['Dien_thoai'] = request.form.get('Th_Dien_thoai')
+    Ghi_nhan_vien(nhan_vien)
+    chuoi_HTML = Tao_page_HTML_Giao_dien_Nhan_vien(nhan_vien)
+    return chuoi_HTML
+
+@app.route("/Cap_nhat_dia_chi",methods=["POST"])
+def XL_cap_nhat_dia_chi():
+    nhan_vien = session['Nguoi_dung']
+    nhan_vien['Dia_chi'] = request.form.get('Th_Dia_chi')
+    Ghi_nhan_vien(nhan_vien)
+    chuoi_HTML = Tao_page_HTML_Giao_dien_Nhan_vien(nhan_vien)
+    return chuoi_HTML
+
+@app.route("/Cap_nhat_hinh",methods=["POST"])
+def XL_cap_nhat_hinh():
+    nhan_vien = session['Nguoi_dung']
+    Hinh = request.files['Th_Hinh']
+    Ghi_Hinh_Nhan_vien(nhan_vien,Hinh)
+    chuoi_HTML = Tao_page_HTML_Giao_dien_Nhan_vien(nhan_vien)
+    return chuoi_HTML
